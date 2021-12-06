@@ -1,4 +1,4 @@
-import 'package:project_application/model/fruits_vegtables.dart';
+import 'package:testing_mobile_project/model/fruits_vegtables.dart';
 
 final _banana =
     FruitsAndVegs('assets/banana.jpg', 'Banana', 10.00, 'Fresh Banana Fruit');

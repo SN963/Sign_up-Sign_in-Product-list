@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_application/data/data.dart';
-import 'package:project_application/model/fruits_vegtables.dart';
-import 'package:project_application/screen/components/freshfruits.dart';
+import 'package:testing_mobile_project/data/data.dart';
+import 'package:testing_mobile_project/model/fruits_vegtables.dart';
+import 'package:testing_mobile_project/screen/freshfruits.dart';
+import 'package:testing_mobile_project/screen/test.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).primaryColor,
         leading: const Padding(
           padding: EdgeInsets.only(),
           child: Icon(
@@ -19,10 +20,17 @@ class HomeScreen extends StatelessWidget {
             size: 28,
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: Icon(Icons.logout, color: Colors.black),
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Test()),
+                  );
+                },
+                icon: const Icon(Icons.logout, color: Colors.black)),
           )
         ],
       ),

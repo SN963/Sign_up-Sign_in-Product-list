@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_application/screen/components/sign_in_button.dart';
+import 'package:testing_mobile_project/screen/sign_in_button.dart';
+import 'package:testing_mobile_project/screen/sign_in_textfield.dart';
+
 //import 'package:project_application/screen/components/sign_in_button.dart';
 //import 'package:project_application/screen/test.dart';
-import 'package:project_application/screen/components/sign_in_textfield.dart';
-
-class SignIn extends StatefulWidget {
+class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
-  @override
-  State<SignIn> createState() => _SignInState();
-}
 
-class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
