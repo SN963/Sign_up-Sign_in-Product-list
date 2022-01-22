@@ -120,162 +120,184 @@ class _sign_inState extends State<sign_in> with SingleTickerProviderStateMixin {
       ),
     );
   }
-  /*
-  void _switchAuthMode() {
-    if (_authMode == AuthMode.Login) {
-      setState(() {
-        _authMode = AuthMode.SignUp;
-      });
-    } else {
-      setState(() {
-        _authMode = AuthMode.Login;
-      });
-    }
-  }*/
 
   bool _obsecure = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
+        body: Column(children: [
+      Image.asset(
+        'assets/signin/Fruits-and-Vegetables.jpg',
+        width: size.width,
+      ),
+      Center(
         child: Column(
           children: [
-            //add the image and full the screen width
+            Text(
+              "Fruits & Vegtables",
+              //primary color that is green found in the main
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //The title that appear before the text area
+          const Padding(
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 3),
+            child: Text(
+              "Sign In",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+          ),
+          // const Padding(padding: EdgeInsets.all(0), child: sign_in()),
+          //add the image and full the screen width
 
-            Padding(
-              padding: const EdgeInsets.only(top: 5.0, bottom: 50.0),
-              child: (Form(
-                key: _form,
-                child: Padding(
-                  padding: EdgeInsets.only(top: size.height / 2),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: emailChecker,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              !value.contains('@')) {
-                            return 'Incorrect email';
-                          }
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0, bottom: 50.0),
+            child: (Form(
+              key: _form,
+              child: Padding(
+                padding: EdgeInsets.only(top: 5.0, bottom: 50.0),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: emailChecker,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            !value.contains('@')) {
+                          return 'Incorrect email';
+                        }
 
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _SignIn_Map['email'] = value.toString();
-                        },
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          prefixIcon: Icon(
-                            Icons.email,
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _SignIn_Map['email'] = value.toString();
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: passChecker,
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.length <= 8) {
+                          return 'Password is too weak';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        //To show the user the input that need to be entered
+                        hintText: 'Password',
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                          color: Colors.green,
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              // Toggle light when tapped.
+                              _obsecure = !_obsecure;
+                            });
+                          },
+                          child: Icon(
+                            _obsecure ? Icons.visibility_off : Icons.visibility,
                             color: Colors.green,
                           ),
                         ),
                       ),
-                      TextFormField(
-                        controller: passChecker,
-                        validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.length <= 8) {
-                            return 'Password is too weak';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          //To show the user the input that need to be entered
-                          hintText: 'Password',
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                            color: Colors.green,
-                          ),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                // Toggle light when tapped.
-                                _obsecure = !_obsecure;
-                              });
-                            },
-                            child: Icon(
-                              _obsecure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ),
-                        obscureText: _obsecure,
-                        onSaved: (value) {
-                          _SignIn_Map['password'] = value.toString();
-                        },
-                      ),
-                      if (_isloading) const CircularProgressIndicator(),
-                      Padding(
+                      obscureText: _obsecure,
+                      onSaved: (value) {
+                        _SignIn_Map['password'] = value.toString();
+                      },
+                    ),
+                    if (_isloading) const CircularProgressIndicator(),
+                    Padding(
                         padding: const EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            //const SignInTextField(),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Theme.of(context)
-                                    .primaryColor, // background
-                                onPrimary: Colors.white,
-                                // foreground
-                              ),
-                              onPressed: () {
-                                if (_form.currentState!.validate()) {
-                                  // If the form is valid, display a snackbar. In the real world,
-                                  // you'd often call a server or save the information in a database.
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Processing Data')),
-                                  );
-                                  _submit();
-                                }
-                              },
-                              child: const Text(
-                                'LogIn',
-                                style: TextStyle(fontSize: 16),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                //const SignInTextField(),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Theme.of(context)
+                                        .primaryColor, // background
+                                    onPrimary: Colors.white,
+                                    // foreground
+                                  ),
+                                  onPressed: () {
+                                    if (_form.currentState!.validate()) {
+                                      // If the form is valid, display a snackbar. In the real world,
+                                      // you'd often call a server or save the information in a database.
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text('Processing Data')),
+                                      );
+                                      _submit();
+                                    }
+                                  },
+                                  child: const Text(
+                                    'LogIn',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                               RaisedButton(
+              color: Theme.of(context).accentColor,
+              child: Text('Signup'),
+              onPressed: () {
+                auth
+                    .createUserWithEmailAndPassword(
+                        email: _email, password: _password)
+                    .then((_) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => signup()));
+                });
+              },
+            )
                             ),
                           ],
-                        ),
-                      ),
-                    ],
-                  ),
+                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          child: Text('Forgot Password?'),
+                          onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => ResetScreen()),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
-              )),
-            ),
-            /*Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(padding: EdgeInsets.only(bottom: size.height / 1)),
-                InkWell(
-                  onTap: () {},
-                  child: const Text("Forget Password?",
-                      style: TextStyle(fontSize: 16)),
-                ),
-                const Padding(padding: EdgeInsets.only(left: 20, top: 0)),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignUp()),
-                    );
-                  },
-                  child: const Text(
-                    "Sign Up",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ],
-            ),*/
-          ],
-        ),
+              ),
+            )),
+          ),
+        ],
       ),
-    );
+    ]));
   }
 }
