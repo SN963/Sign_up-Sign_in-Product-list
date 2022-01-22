@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "710895882406",
+    "firebase_url": "https://fruits-vegetables-basket-19e0d-default-rtdb.firebaseio.com",
+    "project_id": "fruits-vegetables-basket-19e0d",
+    "storage_bucket": "fruits-vegetables-basket-19e0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710895882406:android:1e30c4a8ef829f49362467",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710895882406-u2kvopln2ljdbs7hbb0p3me2dp5o5bbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwcJ0dmdxRxiVzCuPNo5wRV8_1KNDLO_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710895882406-u2kvopln2ljdbs7hbb0p3me2dp5o5bbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710895882406:android:f1ce08cf66ca400e362467",
+        "android_client_info": {
+          "package_name": "com.example.fruit_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710895882406-u2kvopln2ljdbs7hbb0p3me2dp5o5bbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwcJ0dmdxRxiVzCuPNo5wRV8_1KNDLO_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710895882406-u2kvopln2ljdbs7hbb0p3me2dp5o5bbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
