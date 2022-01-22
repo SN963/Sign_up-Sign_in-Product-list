@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_6/screens/reset.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_application_6/Provider/auth.dart';
@@ -263,19 +264,6 @@ class _sign_inState extends State<sign_in> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ],
-                               RaisedButton(
-              color: Theme.of(context).accentColor,
-              child: Text('Signup'),
-              onPressed: () {
-                auth
-                    .createUserWithEmailAndPassword(
-                        email: _email, password: _password)
-                    .then((_) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => signup()));
-                });
-              },
-            )
                             ),
                           ],
                         )),
